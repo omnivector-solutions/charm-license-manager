@@ -1,0 +1,9 @@
+slurm-license.charm
+.tox/
+*.snap
+*.resource
+*.charm
+venv
+out
+build
+tmp

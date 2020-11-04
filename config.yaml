@@ -1,0 +1,9 @@
+options:
+  slurmctld_prolog_path:
+    type: string
+    default: /snap/slurm-license/current/bin/slurmctldprolog
+    description: 'slurmctld prolog path'
+  slurmctld_epilog_path:
+    type: string
+    default: /snap/slurm-license/current/bin/slurmctldepilog
+    description: 'slurmctld epilog path'

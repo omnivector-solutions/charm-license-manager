@@ -1,0 +1,32 @@
+name: slurm-license
+summary: slurm-license
+maintainers:
+    - Omnivector Solutions <Admin@omnivector.solutions>
+description: |
+    A nice long description of what the product does and any
+    high level information about how the charm provides the product,
+    on which platform, etc.
+
+subordinate: true
+
+tags:
+    - slurm
+
+series:
+    - bionic
+    - focal
+
+requires:
+  juju-info:
+    interface: juju-info
+    scope: container
+
+provides:
+  slurm-license:
+    interface: slurm-license
+
+resources:
+  slurm-lic-snap:
+    type: file
+    filename: slurm-lic.snap
+    description: slurm license snap
