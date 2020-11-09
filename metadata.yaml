@@ -22,11 +22,11 @@ requires:
     scope: container
 
 provides:
-  slurm-license:
-    interface: slurm-license
+  prolog-epilog:
+    interface: prolog-epilog
 
 resources:
-  slurm-lic-snap:
+  slurm-license:
     type: file
-    filename: slurm-lic.snap
+    filename: slurm-license.snap
     description: slurm license snap

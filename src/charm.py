@@ -24,7 +24,7 @@ class SlurmLicenseCharm(CharmBase):
             install=False,
         )
 
-        self._license = SlurmLicense(self, 'slurm-license')
+        self._license = SlurmLicense(self, 'prolog-epilog')
         event_handler_bindings = {
             self.on.install: self._on_install,
             self.on.start: self._on_start,
@@ -35,7 +35,7 @@ class SlurmLicenseCharm(CharmBase):
     def _on_install(self, event):
         """Install Slurm-license snap."""
         subprocess.run(
-            ["sudo", "snap", "install", self.model.resources.fetch('slurm-lic-snap'), "--dangerous"]
+            ["sudo", "snap", "install", self.model.resources.fetch('slurm-license'), "--dangerous"]
         )
         self.unit.status = ActiveStatus("License Snap Installed")
 
