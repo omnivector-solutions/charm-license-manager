@@ -1,5 +1,5 @@
-name: slurm-license
-summary: slurm-license
+name: license-manager
+summary: license-manager
 maintainers:
     - Omnivector Solutions <Admin@omnivector.solutions>
 description: |

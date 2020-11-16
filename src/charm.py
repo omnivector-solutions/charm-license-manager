@@ -12,7 +12,7 @@ from ops.model import ActiveStatus
 logger = logging.getLogger()
 
 
-class SlurmLicenseCharm(CharmBase):
+class LicenseCharm(CharmBase):
     """Facilitate licenses for slurm workloads."""
 
     stored = StoredState()
@@ -45,4 +45,4 @@ class SlurmLicenseCharm(CharmBase):
 
 
 if __name__ == "__main__":
-    main(SlurmLicenseCharm)
+    main(LicenseCharm)
