@@ -28,6 +28,7 @@ class LicenseCharm(CharmBase):
         event_handler_bindings = {
             self.on.install: self._on_install,
             self.on.start: self._on_start,
+            self.on.config_changed: self._on_config_changed,
         }
         for event, handler in event_handler_bindings.items():
             self.framework.observe(event, handler)
@@ -42,6 +43,19 @@ class LicenseCharm(CharmBase):
     def _on_start(self, event):
         """Start Snap."""
         self.unit.status = ActiveStatus("Snap Started")
+    
+    def _on_config_changed(self, event):
+        """Set snap mode."""
+        if self.model.config["snap-mode"]:
+            subprocess.run(
+                [
+                    "snap",
+                    "set",
+                    "license-manager",
+                    "snap.mode=" + self.model.config["snap-mode"]
+                ]
+            )
+        self.unit.status = ActiveStatus("snap mode set")
 
 
 if __name__ == "__main__":
