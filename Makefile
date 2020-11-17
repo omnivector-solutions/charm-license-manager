@@ -17,6 +17,10 @@ pull-charm-from-edge: ## Remove .tox and build dirs
 pull-snap-from-edge: ## Remove .tox and build dirs
 	aws s3 cp s3://omnivector-private-assets/snaps/license-manager/edge/license-manager_0.1_amd64.snap ./license-manager.snap
 
+# Display target comments in 'make help'
+help: 
+	grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
 # SETTINGS
 # Use one shell for all commands in a target recipe
 .ONESHELL:

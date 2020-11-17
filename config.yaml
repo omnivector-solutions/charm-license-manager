@@ -1,4 +1,8 @@
 options:
+  snap-mode:
+    type: string
+    default: ""
+    description: 'snap-mode'
   slurmctld_prolog_path:
     type: string
     default: /snap/slurm-license/current/bin/slurmctldprolog

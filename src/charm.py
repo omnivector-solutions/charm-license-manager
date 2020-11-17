@@ -19,7 +19,9 @@ class LicenseCharm(CharmBase):
 
         event_handler_bindings = {
             self.on.install: self._on_install,
+
             self.on.upgrade_charm: self._on_upgrade_charm,
+
         }
         for event, handler in event_handler_bindings.items():
             self.framework.observe(event, handler)
