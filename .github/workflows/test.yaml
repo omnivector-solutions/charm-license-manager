@@ -125,7 +125,7 @@ jobs:
         if: ${{ always() }}
         run: |
           juju remove-application ubuntu
-          juju remove-application jobbergate
+          juju remove-application license-manager
       - name: "Grab the slurm logs"
         if: ${{ always() }}
         run: |
