@@ -37,7 +37,7 @@ jobs:
         with:
           path: |
             license-manager.charm
-          key: jobbergate-charm
+          key: license-manager-charm
   
   cache-juju-tar:
     name: "Cache juju tar for future jobs"
