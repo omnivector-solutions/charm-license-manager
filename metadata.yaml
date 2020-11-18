@@ -10,9 +10,10 @@ description: |
 subordinate: true
 
 tags:
-    - slurm
+    - hpc
 
 series:
+    - centos7
     - bionic
     - focal
 
@@ -26,7 +27,7 @@ provides:
     interface: prolog-epilog
 
 resources:
-  slurm-license:
+  license-manager:
     type: file
-    filename: slurm-license.snap
-    description: slurm license snap
+    filename: license-manager.snap
+    description: License manager snap
