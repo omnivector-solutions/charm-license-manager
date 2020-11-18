@@ -111,6 +111,8 @@ jobs:
         if: ${{ success() }}
         shell: bash
         run: |
+          ls -la
+          pwd
           juju deploy ubuntu --series focal --bind nat
           juju deploy ./license-manager.charm --resource slurm-license=./license-manager_0.1_amd64.snap --series focal --bind nat
           juju relate ubuntu license-manager
