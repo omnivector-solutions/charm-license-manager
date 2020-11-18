@@ -127,7 +127,7 @@ jobs:
         if: ${{ success() }}
         shell: bash
         run: |
-          juju deploy ubuntu --series ${{ matrix.os }} --bind nat
+          juju deploy ubuntu --series focal --bind nat
           juju deploy ./license-manager.charm --resource license-manager=./license-manager_0.1_amd64.snap --series ${{ matrix.os }} --bind nat
           juju relate ubuntu license-manager
  
