@@ -35,10 +35,14 @@ jobs:
         id: license-manager-charm
         uses: actions/cache@v2
         with:
-          path: |
-            license-manager.charm
-          key: license-manager-charm
-  
+          path: ${{ steps.vars.outputs.charm_file }}
+          key: license-manager-charm-${{ hashFiles('*.charm') }}
+
+    outputs:
+      charm_file: ${{ steps.vars.outputs.charm_file }}
+      charm_hash: ${{ steps.vars.outputs.charm_hash }}
+
+ 
   cache-juju-tar:
     name: "Cache juju tar for future jobs"
     runs-on: "ubuntu-latest"
@@ -88,9 +92,8 @@ jobs:
       - name: "Restore built charms"
         uses: actions/cache@v2
         with:
-          path: |
-            license-manager.charm
-          key: license-manager-charm
+          path: ${{ needs.build-charm.outputs.charm_file}}
+          key: license-manager-charm-${{ needs.build-charm.outputs.charm_hash }}
 
       - name: "Set JUJU_DATA to GITHUB_ENV"
         run: |
