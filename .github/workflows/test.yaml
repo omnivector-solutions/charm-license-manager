@@ -1,4 +1,4 @@
-name: TestBuildDeployEdge
+name: TestBuildDeploy
   
 on: pull_request
 
