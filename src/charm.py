@@ -1,5 +1,6 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Slurm License Charm."""
+import os
 import subprocess
 
 from interface_prolog_epilog import PrologEpilog
@@ -33,7 +34,7 @@ class LicenseManagerCharm(CharmBase):
 
     def _on_install(self, event):
         """Install license-manager snap."""
-        if self.install_license_manager_snap():
+        if self._install_license_manager_snap():
             self._stored.license_manager_installed = True
         else:
             self._stored.license_manager_installed = False
@@ -41,7 +42,7 @@ class LicenseManagerCharm(CharmBase):
 
     def _on_upgrade_charm(self, event):
         """Install Slurm-license snap."""
-        if self.install_license_manager_snap():
+        if self._install_license_manager_snap():
             self._stored.license_manager_installed = True
             self.unit.status = ActiveStatus("License Snap upgraded")
             self.unit.set_workload_version(self._get_version())
@@ -62,20 +63,23 @@ class LicenseManagerCharm(CharmBase):
         version = subprocess.check_output([
             "/snap/bin/license-manager.version"
         ])
-        return version
+        return version.decode().strip()
 
     def _install_license_manager_snap(self):
         ret = subprocess.check_call(
             [
-                "snap",
+                "/usr/bin/snap",
                 "install",
                 self.model.resources.fetch('license-manager'),
                 "--dangerous",
                 "--classic"
-            ]
+            ],
+            env={'PATH': f"{os.environ['PATH']}:/var/lib/snapd/snap/bin"}
         )
         if ret != 0:
             return False
+        else:
+            return True
 
 
 if __name__ == "__main__":
