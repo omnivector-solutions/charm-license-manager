@@ -1,13 +1,22 @@
 options:
   snap-mode:
     type: string
-    default: ""
-    description: 'snap-mode'
+    default: "agent"
+    description: >-
+      'Configure the license-manager snap to run in server or agent mode.
+       Default: agent'
   slurmctld_prolog_path:
     type: string
     default: /snap/slurm-license/current/bin/slurmctldprolog
-    description: 'slurmctld prolog path'
+    description: >-
+      'SlurmctldProlog path.'
   slurmctld_epilog_path:
     type: string
     default: /snap/slurm-license/current/bin/slurmctldepilog
-    description: 'slurmctld epilog path'
+    description: >-
+      'SlurmctldEpilog path.'
+  sentry_dsn:
+    type: string
+    default: ""
+    description: >-
+      'Setting this to a valid sentry dsn will enable sentry traceback reporting.'
