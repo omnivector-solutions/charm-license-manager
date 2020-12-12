@@ -41,7 +41,7 @@ class LicenseManagerCharm(CharmBase):
         self._on_update_status(event)
 
     def _on_upgrade_charm(self, event):
-        """Install Slurm-license snap."""
+        """upgrade-charm handler."""
         if self._install_license_manager_snap():
             self._stored.license_manager_installed = True
             self.unit.status = ActiveStatus("License Snap upgraded")
@@ -51,7 +51,7 @@ class LicenseManagerCharm(CharmBase):
         self._on_update_status(event)
 
     def _on_update_status(self, event):
-        """Update the charm status."""
+        """update-status handler."""
         if self._stored.license_manager_installed:
             self.unit.status = ActiveStatus("License Snap Installed")
         else:
@@ -60,12 +60,14 @@ class LicenseManagerCharm(CharmBase):
             )
 
     def _get_version(self):
+        """Retrieve, decode, strip, and return the version."""
         version = subprocess.check_output([
             "/snap/bin/license-manager.version"
         ])
         return version.decode().strip()
 
     def _install_license_manager_snap(self):
+        """Install the license-manager snap."""
         ret = subprocess.check_call(
             [
                 "/usr/bin/snap",
@@ -74,7 +76,9 @@ class LicenseManagerCharm(CharmBase):
                 "--dangerous",
                 "--classic"
             ],
-            env={'PATH': f"{os.environ['PATH']}:/var/lib/snapd/snap/bin"}
+            env={
+                'PATH': f"{os.environ['PATH']}:/var/lib/snapd/snap/bin"
+            },
         )
         if ret != 0:
             return False
