@@ -82,8 +82,7 @@ class LicenseManagerCharm(CharmBase):
         )
         if ret != 0:
             return False
-        else:
-            return True
+        return True
 
 
 if __name__ == "__main__":
